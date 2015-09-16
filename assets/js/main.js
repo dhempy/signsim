@@ -51,6 +51,9 @@ function pubnubMessageHandler(messageObject, response) {
   } else if ( messageObject.message === 'enrolled') {
     onlineEndpointPost();
   }
+  else{
+    $('#device-data').append('<p> UNKOWN MESSAGE:' + messageObject.message);
+  }
 }
 
 function manifestGet() {
