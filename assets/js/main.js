@@ -95,3 +95,37 @@ function acknowledgePubnubMessage(message) {
     }
   });
 }
+
+//From: http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript?page=1&tab=votes#tab-top
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+//Just use some DOM
+function submitQueryValues(){
+  var submit = true;
+  if(getParameterByName("environment")){
+    document.getElementById("environment").value = getParameterByName("environment");
+  }
+  else{
+    submit = false;
+  }
+  if(getParameterByName("barcode")){
+    document.getElementById("barcode").value = getParameterByName("barcode");
+  }
+  else{
+    submit = false;
+  }
+  if(getParameterByName("guid")){
+    document.getElementById("guid").value = getParameterByName("guid");
+  }
+  else{
+    submit = false;
+  }
+  if(submit){
+    onlineEndpointPost();
+  }
+}
